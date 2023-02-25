@@ -1,0 +1,184 @@
+body {
+    background-color: #61dafb;
+}
+
+
+.box {
+    position: relative;
+    width: 60%;
+    margin: 0 auto;
+    height: auto;
+    background: #E5DCC5;
+    border-radius: 50%;
+    padding: 10rem;
+    border: 3px solid #999;
+    overflow: auto;
+    text-align: center;
+    color: rgb(77, 77, 196);
+    font-size: x-large;
+    font-weight: bold;
+}
+
+button {
+    background-color: #ee6e73;
+}
+
+.card-title {
+    color: white;
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+.date-and-time-pickers {
+    margin: auto;
+    overflow: hidden;
+    margin-top: 2rem;
+    width: 50%;
+}
+
+.date-picker {
+    float: left;
+}
+
+.date-time-submit {
+    margin-top: 5rem;
+}
+
+.details-link {
+    color: blue;
+}
+
+.details-link:hover {
+    color: antiquewhite;
+}
+
+.event-avail-header {
+    margin: 2rem;
+    color: black;
+    background-color: white;
+    font-weight: 500;
+}
+
+.event-avail-selection-box {
+    align-items: center;
+    background-color: rgb(58, 140, 140);
+    border-radius: 25px;
+    border-top: 5em;
+    color: white;
+    height: 20em;
+    margin: auto;
+    padding-top: 0.2em;
+    padding-bottom: 5em;
+    position: center;
+    text-align: center;
+    /*width: 100em;*/
+}
+
+.event-type-and-user-availability {
+    background-color: rgb(255, 255, 255, 0.1);
+    color: black;
+    margin: auto;
+    padding-top: 5rem;
+}
+
+.event-container {
+    background-color: rgb(58, 140, 140);
+    border-radius: 25px;
+    border-top: 5em;
+    color: white;
+    height: 50em;
+    margin: auto;
+    padding-top: 0.2em;
+    padding-bottom: 5em;
+    position: relative;
+    text-align: center;
+    /*width: 100em;*/
+}
+
+.event-details {
+    background-color: rgb(238,110,115);
+    border-radius: 25px;
+    padding-top: 3em;
+    padding-bottom: 4em;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.00833em;
+}
+
+.event-status {
+    background-color: white;
+    color: black;
+}
+
+.event-type-custom-questions {
+    background-color: rgb(255, 255, 255, 0.1);
+    color: black;
+    margin: auto;
+}
+
+.event-type-details-container {
+    line-height: 3rem;
+    padding-top: 2rem;
+}
+
+.event-type-kind {
+    text-transform: capitalize;
+}
+
+input {
+    color: rgb(56, 49, 109);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.next-back-btns {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.popup-box {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.scheduled-event-header {
+    color: white;
+    font-family: Arial, sans-serif;
+    margin-top: 6%;
+    text-align: center;
+    opacity: 1;
+}
+
+.scheduling-urls {
+    background-color: rgb(238,110,115);
+}
+
+.time-picker {
+    float: right;
+}
+
+.toggle-btn {
+    border-radius: 25px;
+}
+
+.x-icon {
+    content: 'x';
+    cursor: pointer;
+    position: fixed;
+    right: 10%;
+    top: 20%;
+    background: #E5DCC5;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+}
