@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('dotenv').config({ path: `env.local` })
 const createError = require('http-errors');
 const express = require('express');
 const app = express();
