@@ -8,43 +8,15 @@ const initializeDatabase = require('./models/provisiondatabase');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
-const hbs = require('hbs');
-var User = require('./models/provisiondatabase');
-var sqlite3 = require('sqlite3');
-// const cors = require('cors');
-// app.use(cors({
-//     origin:  ['http://127.0.0.1:3001','http://localhost:3001']
-// }));
-// var db = new sqlite3.Database('./database/sessions.db', (err) => {
-//   if (err) {
-//     console.log('Could not connect to database', err)
-//   } else {
-//     console.log('Connected to database')
-//   }
-// })
-
-
 
 const port = process.env.PORT || '3000';
-// const {
-//   mockCalendlyAuthentication,
-//   mockCalendlyScheduledEvents,
-//   mockCalendlyEventTypes,
-//   mockCalendlyEvent,
-//   mockCalendlyInvitees,
-//   mockCalendlyNoShows,
-//   mockCalendlyUndoNoShow,
-//   mockCalendlyCancelEvent,
-// } = require('./utils/test.js');
 
 (async () => {
   await initializeDatabase();
 })();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views/handlebars'));
-app.set('view engine', 'hbs');
-hbs.registerPartials(path.join(__dirname, 'views/partials'));
+// hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.use(express.static(path.join(__dirname, 'public')));
 console.log("your dirname " + __dirname)
 const reactpath = __dirname + '/views/';
@@ -80,7 +52,7 @@ passport.deserializeUser((user, next) => {
 app.use('/oauth', require('./routes/oauth'));
 app.use('/api', require('./routes/api'));
 app.get('*', function (req,res) {
-  res.sendFile(path.join(__dirname, "public", "index.html"), err =>{
+  res.sendFile(path.join(__dirname, "/reactcalendly/build", "index.html"), err =>{
     console.log("error " + err)
   });
 });
@@ -102,16 +74,6 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-if (process.env.NODE_ENV === 'test') {
-  mockCalendlyAuthentication();
-  mockCalendlyEventTypes();
-  mockCalendlyScheduledEvents();
-  mockCalendlyEvent();
-  mockCalendlyInvitees();
-  mockCalendlyNoShows();
-  mockCalendlyUndoNoShow();
-  mockCalendlyCancelEvent();
-}
 
 app.listen(port, () => {
   console.log(`Server ready at http://localhost:${port}`);

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon express-server.js",
+    "buildstart": "./myapp/ npm run build && nodemon express-server.js",
+    "dev": "nf start -j Procfile.dev"
   },
   "keywords": [],
   "author": "djbrenne",
@@ -21,6 +24,7 @@
     "mongoose": "^6.10.0",
     "passport": "^0.4.1",
     "passport-oauth2": "^1.5.0",
+    "prettier": "^2.8.4",
     "sqlite3": "^5.1.4"
   }
 }

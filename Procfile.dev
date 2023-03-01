@@ -1,0 +1,2 @@
+api: node express-server.js
+wait-for-it.sh:: cd reactcalendly && npm run build
