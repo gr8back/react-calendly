@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon express-server.js",
-    "buildstart": "./myapp/ npm run build && nodemon express-server.js",
+    "buildstart": "./reactcalendly/ npm run build && nodemon express-server.js",
     "dev": "nf start -j Procfile.dev"
   },
   "keywords": [],
