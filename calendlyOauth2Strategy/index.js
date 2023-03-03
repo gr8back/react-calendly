@@ -16,7 +16,7 @@ const strategy = new OAuth2Strategy(
       console.log("reached oauth strategy");
     const calendlyService = new CalendlyService(accessToken, refreshToken);
     const userInfo = await calendlyService.getUserInfo();
-    console.log("attempting to login with oauth strategy " + userInfo)
+    console.log("attempting to login with oauth strategy " + JSON.stringify(userInfo))
     try {
       const result = await User.findOrCreate({
         accessToken,

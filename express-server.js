@@ -17,12 +17,13 @@ const port = process.env.PORT || '3000';
 
 // view engine setup
 // hbs.registerPartials(path.join(__dirname, 'views/partials'));
-app.use(express.static(path.join(__dirname, 'public')));
+
 console.log("your dirname " + __dirname)
-const reactpath = __dirname + '/views/';
-app.use(express.static(reactpath));
-app.use(express.static(reactpath + '/static'));
+// const reactpath = __dirname + '/views/';
+// app.use(express.static(reactpath));
+// app.use(express.static(reactpath + '/static'));
 // cookie configuration
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
@@ -52,10 +53,12 @@ passport.deserializeUser((user, next) => {
 app.use('/oauth', require('./routes/oauth'));
 app.use('/api', require('./routes/api'));
 app.get('*', function (req,res) {
-  res.sendFile(path.join(__dirname, "/reactcalendly/build", "index.html"), err =>{
+  res.sendFile(path.join(__dirname, "/public", "index.html"), err =>{
     console.log("error " + err)
   });
 });
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

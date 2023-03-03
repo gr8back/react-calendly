@@ -179,8 +179,8 @@ router
     let user;
 
     if (req.user) {
-      console.log("req.user authenticated " + JSON.stringify(req.user))
       user = await User.findById(req.user.id);
+      console.log("req.user authenticated " + JSON.stringify(user))
     }
 
     res.json({ authenticated: !!user });
