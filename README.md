@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Getting Started with Calendly example Buzzword CRM with React Compile
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was forked from  with [BuzzwordCRM](https://github.com/calendly/buzzwordcrm).
 
-## Available Scripts
+## Deploy Scripts
 
-In the project directory, you can run:
+Rather than use esbuild, this project uses the React bundler - Webpack - to bundle the React application components
+and static files into a static build folder, which is then served by the express application.
 
-### `npm start`
+The express server and the React application both run on the same port - 3000.  When we hit the main login
+path or root of the application at '/' that serves the React static files.  When we hit either the /oauth or
+/api prefixes, we are using the express server.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To start the application run ./my.sh from the command line.  This will start the express server AND run 
+'npm run build' in the reactcalendly folder, packaging up any changes you've made in the react app and 
+creating a new static bundle.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Nodemon will then be up and running your running on port 3000.
 
-### `npm test`
+### Changes from Buzzword CRM
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Buzzword CRM used React components, but, not the React bundler.  Since I am a React guy, I just figured, I 
+would re-work the start process.   Along with that, we replaced the foreman procdev file with a standard
+shell script my.sh.
 
-### `npm run build`
+The static assets from the server's public folder, were moved into the React app's public directory.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The views folder and handlebars view engine were removed from the project, because they are being handled
+by the React bundle now.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Environment Variables 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Enter your Client ID and Secret into either the .env file or a .env.local file as below:
 
-### `npm run eject`
+CLIENT_ID=youridhere
+CLIENT_SECRET=yoursecrethere
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### CSS Changes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Minimal CSS changes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -43,9 +43,8 @@ passport.deserializeUser((user, next) => {
 app.use('/oauth', require('./routes/oauth'));
 app.use('/api', require('./routes/api'));
 app.get('*', function (req,res) {
-  console.log("no error " + req.url + req.path + JSON.stringify(req.query) + JSON.stringify(req.params));
   res.sendFile(path.join(__dirname, "/reactcalendly/build", "index.html"), err =>{
-    console.log("error " + err + req.url + req.path + JSON.stringify(req.query) + JSON.stringify(req.params));
+    console.log("error " + err);
   });
 });
 
