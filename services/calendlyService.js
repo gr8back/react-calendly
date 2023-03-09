@@ -23,7 +23,6 @@ class CalendlyService {
   }
 
   requestConfiguration() {
-    console.log("bearertoken being used")
     return {
       headers: {
         Authorization: `Bearer ${this.accessToken}`,
@@ -127,15 +126,12 @@ class CalendlyService {
     ].join('&');
 
     const url = `/user_busy_times?${queryParams}`;
-
     const { data } = await this.request.get(url, this.requestConfiguration());
-
     return data;
   };
 
   getUserAvailabilitySchedules = async (userUri) => {
     const url = `/user_availability_schedules?user=${userUri}`;
-    console.log("cal servie user avail sched " + userUri)
     const { data } = await this.request.get(url, this.requestConfiguration());
 
     return data;

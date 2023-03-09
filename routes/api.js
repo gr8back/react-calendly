@@ -12,7 +12,6 @@ const User = require('../models/userModel');
 
 router
   .get('/scheduled_events', isUserAuthenticated, async (req, res, next) => {
-    console.log("server scheduled events")
     try {
       const { access_token, refresh_token, calendly_uid } = req.user;
       const { count, page_token, status, max_start_time, min_start_time } =
@@ -37,7 +36,6 @@ router
     }
   })
   .get('/event_types', isUserAuthenticated, async (req, res) => {
-    console.log("server side event types")
     const { access_token, refresh_token, calendly_uid } = req.user;
     const calendlyService = new CalendlyService(access_token, refresh_token);
     const { collection: eventTypes, pagination } =
@@ -113,7 +111,6 @@ router
     }
   )
   .get('/user_busy_times', isUserAuthenticated, async (req, res, next) => {
-    console.log("reached user busy times " + JSON.stringify(req.user))
     try {
       const { access_token, refresh_token, calendly_uid } = req.user;
 
@@ -147,7 +144,6 @@ router
         );
 
         const { user } = req.query;
-        console.log("user availability sched " + user)
         const { collection: availabilitySchedules } =
           await calendlyService.getUserAvailabilitySchedules(
             user,
@@ -167,7 +163,6 @@ router
       const calendlyService = new CalendlyService(access_token, refresh_token);
 
       const { uuid } = req.params;
-      console.log("getuser uuid " + uuid)
       const { resource } = await calendlyService.getUser(uuid);
 
       res.json({ resource });
@@ -180,10 +175,17 @@ router
 
     if (req.user) {
       user = await User.findById(req.user.id);
-      console.log("req.user authenticated " + JSON.stringify(req.user))
     }
 
     res.json({ authenticated: !!user });
+  })
+  .get('/endsession', async (req, res) => {
+
+    if (req.user) {
+      req.session = null;
+    }
+
+    res.json({ session: "ended" });
   })
   .post('/no_shows', isUserAuthenticated, async (req, res, next) => {
     try {

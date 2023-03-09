@@ -1,5 +1,5 @@
-require('dotenv').config();
-require('dotenv').config({ path: `env.local` })
+require('dotenv').config(); //main calendly env variables
+require('dotenv').config({ path: `env.local` }); //your client id and secret
 const createError = require('http-errors');
 const express = require('express');
 const app = express();
@@ -15,16 +15,8 @@ const port = process.env.PORT || '3000';
   await initializeDatabase();
 })();
 
-// view engine setup
-// hbs.registerPartials(path.join(__dirname, 'views/partials'));
-
-console.log("your dirname " + __dirname)
-const reactpath = __dirname + '/reactcalendly/build';
-console.log("dirpath " + __dirname)
-// app.use(express.static(reactpath));
 app.use(express.static(path.join(__dirname, "reactcalendly/build")));
-// cookie configuration
-// app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
@@ -36,17 +28,14 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-console.log("the port being used is " + port)
 // passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(require('./calendlyOauth2Strategy'));
 passport.serializeUser((user, next) => {
-  console.log("serialize user")
   next(null, user);
 });
 passport.deserializeUser((user, next) => {
-    console.log("deserialize user")
   next(null, user);
 });
 
@@ -54,12 +43,11 @@ passport.deserializeUser((user, next) => {
 app.use('/oauth', require('./routes/oauth'));
 app.use('/api', require('./routes/api'));
 app.get('*', function (req,res) {
+  console.log("no error " + req.url + req.path + JSON.stringify(req.query) + JSON.stringify(req.params));
   res.sendFile(path.join(__dirname, "/reactcalendly/build", "index.html"), err =>{
-    console.log("error " + err)
+    console.log("error " + err + req.url + req.path + JSON.stringify(req.query) + JSON.stringify(req.params));
   });
 });
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -70,15 +58,14 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  console.log("res locals middleware")
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 
 app.listen(port, () => {
-  
+  console.log("listening on port " + port)
 });

@@ -13,7 +13,7 @@ class UserModel {
 
   async findOrCreate({ calendlyUid, refreshToken, accessToken }) {
     const user = await this.findByCalendlyUserId(calendlyUid);
-    console.log("SQL find or create " + calendlyUid)
+
     if (user) return user;
 
     await this.create({
@@ -27,7 +27,6 @@ class UserModel {
 
   async findByCalendlyUserId(calendlyUid) {
     return new Promise((resolve, reject) => {
-      console.log("find by calendly uid sql")
       db.get(FIND_BY_CALENDLY_UID_SQL, [calendlyUid], (err, row) => {
         if (err) return reject(err);
 
@@ -67,7 +66,6 @@ class UserModel {
   }
 
   async create({ calendlyUid, accessToken, refreshToken }) {
-    console.log("creating user " + calendlyUid)
     return new Promise((resolve, reject) => {
       db.run(CREATE_SQL, [calendlyUid, accessToken, refreshToken], (err) => {
         if (err) return reject(err);
